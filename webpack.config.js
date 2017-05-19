@@ -20,7 +20,8 @@ module.exports = {
       "tools":"modules/commen/tools",
       "store":"modules/commen/store",
       "Child1":"modules/index/Child1",
-      "Child2":"modules/index/Child2"
+      "Child2":"modules/index/Child2",
+      'Login':'modules/login/Login'
     }
   }
 };
