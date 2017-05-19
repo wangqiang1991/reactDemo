@@ -1,6 +1,6 @@
 import React from "react";
 import {ajax} from "tools";
-import {Modal, Card, Row, Col, Form, Icon, Input, Button, Checkbox } from 'antd';
+import {Modal,Tooltip, Card, Row, Col, Form, Icon, Input, Button, Checkbox } from 'antd';
 const FormItem = Form.Item;
 
 class Login extends React.Component {
@@ -8,6 +8,8 @@ class Login extends React.Component {
     super(props);
     this.state={
       visible: false,
+      tipUservisible:false,
+      tipPwdvisible:false
     };
   }
   handleOk  (e)  {
@@ -25,8 +27,31 @@ class Login extends React.Component {
     this.props.form.validateFields((err, values) => {     
       if (!err) {
         let username = values.userName;
-        let password = values.password;
-        if( /^[a-zA-Z0-9]{6,10}$/.test(password) && /^1(3|4|5|7|8)\d{9}$/.test(username) ){
+        let password = values.password;  
+        if(!/^1(3|4|5|7|8)\d{9}$/.test(username)){
+            this.setState({
+              tipUservisible: true,
+            });
+
+            return false;    
+        }
+        else if(!/^[a-zA-Z0-9]{6,10}$/.test(password)){
+          this.setState({
+              tipUservisible: false,
+            });
+            this.setState({
+              tipPwdvisible: true,
+            });
+
+            return false;
+        }
+      else if( /^[a-zA-Z0-9]{6,10}$/.test(password) && /^1(3|4|5|7|8)\d{9}$/.test(username) ){
+            this.setState({
+              tipUservisible: false,
+              tipPwdvisible: false
+            });
+           
+
             ajax({
               type:'post',
               url:'/react/login',
@@ -46,8 +71,6 @@ class Login extends React.Component {
               }
 
             })
-        }else{
-          
         }
       }
     });
@@ -58,8 +81,9 @@ class Login extends React.Component {
       <Row style={{backgroundColor:'#f0f0f0',width:"100%",height:'100%'}}>
       <Col span={8}></Col>
       <Col span={8}>
-      <Card >
+      <Card title='用户登录'>
       <Form onSubmit={this.handleSubmit.bind(this)} className="login-form">
+        <Tooltip placement="right" title='用户名格式不正确' visible={this.state.tipUservisible}>
         <FormItem>
           {getFieldDecorator('userName', {
             rules: [{ required: true, message: '请输入您的用户名!' }],
@@ -67,6 +91,8 @@ class Login extends React.Component {
             <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="用户名" />
           )}
         </FormItem>
+        </Tooltip>
+        <Tooltip placement="right" title='密码格式不正确' visible={this.state.tipPwdvisible}>
         <FormItem>
           {getFieldDecorator('password', {
             rules: [{ required: true, message: '请输入您的密码!' }],
@@ -74,6 +100,7 @@ class Login extends React.Component {
             <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="密码" />
           )}
         </FormItem>
+        </Tooltip>
         <FormItem>
         <Col span={8}></Col>
         <Col span={8}>
@@ -90,7 +117,7 @@ class Login extends React.Component {
        <Modal title="提示信息" visible={this.state.visible}
           onOk={this.handleOk.bind(this)} onCancel={this.handleCancel.bind(this)}
         >
-          <p>用户名或密码不正确</p>        
+          <p>用户名或密码错误</p>        
         </Modal>
       </div>
     );
