@@ -1,5 +1,6 @@
 import React from "react";
 import {ajax} from "tools";
+import {hashHistory} from "react-router";
 import {Modal,Tooltip, Card, Row, Col, Form, Icon, Input, Button, Checkbox } from 'antd';
 const FormItem = Form.Item;
 
@@ -61,7 +62,7 @@ class Login extends React.Component {
               },
               success:(data)=>{
                 if(data.status == 1){
-                    console.log('成功')
+                    hashHistory.push('/index');
                 }
                 if(data.status == 0){
                     this.setState({
@@ -78,47 +79,45 @@ class Login extends React.Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     return ( <div>
-      <Row style={{backgroundColor:'#f0f0f0',width:"100%",height:'100%'}}>
-      <Col span={8}></Col>
-      <Col span={8}>
-      <Card title='用户登录'>
-      <Form onSubmit={this.handleSubmit.bind(this)} className="login-form">
-        <Tooltip placement="right" title='用户名格式不正确' visible={this.state.tipUservisible}>
-        <FormItem>
-          {getFieldDecorator('userName', {
-            rules: [{ required: true, message: '请输入您的用户名!' }],
-          })(
-            <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="用户名" />
-          )}
-        </FormItem>
-        </Tooltip>
-        <Tooltip placement="right" title='密码格式不正确' visible={this.state.tipPwdvisible}>
-        <FormItem>
-          {getFieldDecorator('password', {
-            rules: [{ required: true, message: '请输入您的密码!' }],
-          })(
-            <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="密码" />
-          )}
-        </FormItem>
-        </Tooltip>
-        <FormItem>
+      <Row style={{backgroundColor:'#999',width:"100%",height:'100%'}}>
         <Col span={8}></Col>
         <Col span={8}>
-          <Button type="primary" htmlType="submit" style={{width:'100%'}} className="login-form-button">
-           登录
-          </Button> 
-         </Col>        
-        </FormItem>
-      </Form>
-      </Card>
-      </Col>
-      <Col span={8}></Col>
+          <Card title='用户登录' bodyStyle={{backgroundColor:'#f5f5f5'}}>
+            <Form onSubmit={this.handleSubmit.bind(this)} className="login-form">
+              <Tooltip placement="right" title='用户名格式不正确' visible={this.state.tipUservisible}>
+                <FormItem>
+                  {getFieldDecorator('userName', {
+                    rules: [{ required: true, message: '请输入您的用户名!' }],
+                  })(
+                    <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="用户名" />
+                  )}
+                </FormItem>
+              </Tooltip>
+              <Tooltip placement="right" title='密码格式不正确' visible={this.state.tipPwdvisible}>
+                <FormItem>
+                  {getFieldDecorator('password', {
+                    rules: [{ required: true, message: '请输入您的密码!' }],
+                  })(
+                    <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="密码" />
+                  )}
+                </FormItem>
+              </Tooltip>
+              <FormItem>
+              <Col span={8}></Col>
+              <Col span={8}>
+                <Button type="primary" htmlType="submit" style={{width:'100%'}} className="login-form-button">
+                 登录
+                </Button> 
+               </Col>        
+              </FormItem>
+            </Form>
+          </Card>
+        </Col>
+        <Col span={8}></Col>
       </Row>
-       <Modal title="提示信息" visible={this.state.visible}
-          onOk={this.handleOk.bind(this)} onCancel={this.handleCancel.bind(this)}
-        >
-          <p>用户名或密码错误</p>        
-        </Modal>
+         <Modal title="提示信息" visible={this.state.visible} onOk={this.handleOk.bind(this)} onCancel={this.handleCancel.bind(this)} >
+            <p>用户名或密码错误</p>        
+          </Modal>
       </div>
     );
   }

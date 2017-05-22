@@ -8,7 +8,6 @@ class Child1 extends React.Component{
     super(props);
     this.state={};
     this.spanStyle={
-      fontSize:'25px',
       color:'red'
     }
   }
