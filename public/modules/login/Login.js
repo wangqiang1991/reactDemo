@@ -85,7 +85,7 @@ class Login extends React.Component {
   }
   render() {
     const { getFieldDecorator } = this.props.form;
-    return ( <div style={{backgroundImage:'url(img/bg.jpg)',width:'100%',height:'100%'}}>
+    return ( <div style={{background:'#a9a9a9',width:'100%',height:'100%'}}>
       <div style={{width:'400px',height:"auto",paddingTop:'20%',margin:'auto'}}>
           <Card title='用户登录' bodyStyle={{backgroundColor:'#f5f5f5'}}>
             <Form onSubmit={this.handleSubmit.bind(this)} className="login-form">

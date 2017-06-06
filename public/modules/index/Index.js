@@ -1,41 +1,64 @@
+/*jshint esversion:6*/
 import React from "react";
-import {ajax} from "tools";
-import {Input,Button,Form,Icon,BackTop,Spin} from "antd";
-import Child1 from 'Child1';
-import Child2 from 'Child2';
-const InputGroup = Input.Group;
-class Index extends React.Component{
-	constructor(props){
-    super(props);
-    this.state={
-    	data:{},
-    	children:[]
-    };
-  }
-  search(){
-  	ajax({
-  		type:'get',
-  		url:'/react/showall',
-  		success:(data)=>{
-  			console.log(data[0].child[0].child1)
-  			this.setState({
-  				data:data,
-  				children:data[0].child
-  			})
-  		}
-  	})
-  }
-  render(){
-  	return <div>
-  		<h1>hello world</h1>	
-  		<Button type="primary" onClick={this.search.bind(this)}>按钮</Button>
-  		<Input placeholder="Username" />
-  		<Child1 click={this.search.bind(this)} data={this.state.data}></Child1>
-  		<Child2 click={this.search.bind(this)} children={this.state.children}></Child2>
-   		<Spin style={{marginLeft:'50px',fontSize:'50px',marginTop:'50px'}} />
-   		
-  	</div>
-  }
-}
+import {Route,Router,IndexRoute,hashHistory} from "react-router";
+import {Provider} from "react-redux";
+import { Menu,Icon,Switch,Col,Row ,Card} from 'antd';
+import ReactDOM from "react-dom";
+import store from "store";
 
-export default Form.create()(Index);
+export default class MainManage extends React.Component{
+    constructor(props){
+        super(props);
+        this.state={
+          current:"1"
+        };
+        this.style={
+          width:"100%",
+          height:585
+        };
+    }
+    handleClick(e) {
+      console.log('click ', e);
+      this.setState({
+        current: e.key,
+      });
+    }
+    render(){
+      const SubMenu = Menu.SubMenu;
+      return <div style={this.style}>
+      <Row type="flex" justify="left" style={{height:'560px'}}>
+        <Col span={22} offset={1} className="cols">
+        <Card bordered={true} style={{height:560,marginTop:'20px',background:'#fff'}}>
+      <Row type="flex" justify="left" style={{height:'100%'}}>
+        <Col span={4}>
+        <Menu
+          onClick={this.handleClick.bind(this)}
+          style={{width:'100%',height:"100%",borderRight:"1px solid #fff",float:"left" }}
+          defaultOpenKeys={['sub1']}
+          selectedKeys={[this.state.current]}
+          mode="inline"
+        >
+          <SubMenu key="sub1" title={<span><Icon type="mail"/><span>用户管理</span></span>}>
+            <Menu.Item key="1"><a href="#index/user">用户信息</a></Menu.Item>
+          </SubMenu>
+          <SubMenu key="sub2" title={<span><Icon type="appstore" /><span>商品管理</span></span>}>
+            <Menu.Item key="5"><a href="#MainManage/GoodsManage">商品管理</a></Menu.Item>
+            <Menu.Item key="6"><a href="#MainManage/ClassManage">类别管理</a></Menu.Item>
+            <Menu.Item key="7"><a href="#MainManage/HotManage">热门管理</a></Menu.Item>
+            <Menu.Item key="8"><a href="#MainManage/Promotion">促销管理</a></Menu.Item>
+          </SubMenu>
+          <SubMenu key="sub4" title={<span><Icon type="setting" /><span>订单管理</span></span>}>
+            <Menu.Item key="9"><a href="#MainManage/OrderManage">订单管理</a></Menu.Item>
+          </SubMenu>
+        </Menu>
+        </Col>
+        <Col span={18} offset={1} style={{backgroundColor:"#fff"}}>
+          {this.props.children}
+        </Col>
+        </Row>
+          </Card>
+        </Col>
+        </Row>
+      </div>
+    }
+}
