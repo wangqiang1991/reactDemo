@@ -2,7 +2,7 @@
 import React from "react";
 import {ajax} from "tools";
 import {hashHistory,Link} from "react-router";
-import {Tabs,Button,Col,Row,Menu,Icon} from "antd";
+import {Tabs,Button,Col,Row,Menu,Icon,Popconfirm} from "antd";
 export default class Header extends React.Component{
   constructor(props){
     super(props);
@@ -68,6 +68,10 @@ export default class Header extends React.Component{
       }
     });
   }
+  confirm() {
+   console.log('Click on Yes.');
+   this.logout();
+  }
   logout(){
     ajax({
       type:"get",
@@ -78,9 +82,14 @@ export default class Header extends React.Component{
     });
   }
   render(){
+    const text = 'Are you sure delete this task?';
     var tag;
     if(this.state.user.username){
-      tag = <span>欢迎你,{this.state.user.username}<a onClick={this.logout.bind(this)}>注销</a></span>
+      tag = <span>欢迎你,{this.state.user.username}
+      <Popconfirm placement="bottom" title={text} onConfirm={this.confirm.bind(this)} okText="Yes" cancelText="No">
+      <a >注销</a>
+       </Popconfirm>
+      </span>
     }else{
       tag =<Link to="/login">登录</Link>;
     }
