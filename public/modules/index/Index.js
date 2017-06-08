@@ -14,7 +14,10 @@ export default class MainManage extends React.Component{
         };
         this.style={
           width:"100%",
-          height:585
+          height:"100%",
+          position:'absolute',
+          top:'0',
+          left:'0'
         };
     }
     handleClick(e) {
@@ -23,12 +26,39 @@ export default class MainManage extends React.Component{
         current: e.key,
       });
     }
+    componentDidMount () {
+      this.createCanvas();
+    }
+    createCanvas () {
+      var victor = new Victor("container", "output");
+      var theme = [
+          ["#002c4a", "#005584"],
+          ["#35ac03", "#3f4303"],
+          ["#ac0908", "#cd5726"],
+          ["#18bbff", "#00486b"]
+        ]
+      $(".color li").each(function(index, val) {
+        var color = theme[index];
+         $(this).mouseover(function(){
+          victor(color).set();
+         })
+      });
+    }
     render(){
       const SubMenu = Menu.SubMenu;
       return <div style={this.style}>
-      <Row type="flex" justify="left" style={{height:'560px'}}>
+      <div id="container">
+        <div id="output"></div>
+      </div>
+      <ul className="color">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+      <Row type="flex" justify="left" style={{height:'auto',marginTop:'100px'}}>
         <Col span={22} offset={1} className="cols">
-        <Card bordered={true} style={{height:560,marginTop:'20px',background:'#fff'}}>
+        <Card bordered={true} style={{height:'700px',marginTop:'20px',background:'#fff'}}>
       <Row type="flex" justify="left" style={{height:'100%'}}>
         <Col span={4}>
         <Menu
