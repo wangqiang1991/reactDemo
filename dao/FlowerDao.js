@@ -9,3 +9,5 @@ module.exports.findAll = function(func){
 module.exports.login = function(username,pwd,func){
 	db.collection('user').find({username:username,password:pwd},func);
 }
+
+

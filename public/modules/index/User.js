@@ -2,22 +2,48 @@ import React from "react";
 import {ajax} from "tools";
 import store from "store";
 import { connect } from 'react-redux';
-import {Input,Button,Form,Icon} from "antd";
+import {Form, Upload, message, Icon, Button} from "antd";
+
+
+
+
 class User extends React.Component{
 	constructor(props){
     super(props);
-    this.state={};
+    this.state={
+      
+    };
     this.spanStyle={
       color:'red'
     }
   }
-  click1(){
-    console.log(this.props.dataState)
+  onChange (info) {
+    console.log(info)
+    if (info.file.status !== 'uploading') {
+      console.log(info.file, info.fileList);
+    }
+    if (info.file.status === 'done') {
+      message.success(`${info.file.name} file uploaded successfully`);
+    } else if (info.file.status === 'error') {
+      message.error(`${info.file.name} file upload failed.`);
+    }
   }
+
+
   render(){
-  	return <div>
-  		<h1>Child1</h1>
-  		<Button type="primary" onClick={this.click1.bind(this)} style={this.spanStyle}>按钮1</Button>
+    const props = {
+        name: 'file',
+        action: '/content/upload',
+        headers: {
+          authorization: 'authorization-text'
+        }
+      }
+  	return <div> 
+         <Upload {...props}>
+          <Button>
+            <Icon type="upload" /> 点击上传图片
+          </Button>
+        </Upload>
   	</div>
   }
 }

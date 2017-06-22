@@ -35,4 +35,8 @@ router.get('/logout',function(req,res){
     res.send('注销！');
 });
 
+
+
+
+
 module.exports = router;

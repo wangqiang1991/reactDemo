@@ -23,10 +23,11 @@
 	width: 120px;
 	height: 20px;
 	margin: 0 auto;
-	position: fixed;
+	position: absolute;
 	left: 50%;
 	margin-left: -60px;
-	bottom: 20px;
+	top: 65px;
+	z-index: 99;
 }
 .color li{
 	float: left;
