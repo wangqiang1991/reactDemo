@@ -3,7 +3,7 @@
 var MongoClient = require('mongodb').MongoClient;
 var ObjectID = require('mongodb').ObjectID;
 var DBRef = require('mongodb').DBRef;
-var url = 'mongodb://127.0.0.1:27017/test';
+var url = 'mongodb://127.0.0.1:27017/flower';
 
 var arySort = function(ary){
     ary.sort(function(a,b){

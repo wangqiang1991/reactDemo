@@ -407,7 +407,7 @@ class Login extends React.Component {
         if( /^[a-zA-Z0-9]{6,10}$/.test(password) ){
             ajax({
               type:'post',
-              url:'/react/login',
+              url:'/user/login',
               data:{
                 user:username,
                 pwd:password

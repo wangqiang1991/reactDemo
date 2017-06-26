@@ -9,3 +9,45 @@
 		left: 0;
 		z-index: -100;
 }
+
+#container {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+}
+#output {
+	width: 100%;
+	height: 100%;
+}
+.color{
+	width: 120px;
+	height: 20px;
+	margin: 0 auto;
+	position: absolute;
+	left: 50%;
+	margin-left: -60px;
+	top: 65px;
+	z-index: 99;
+}
+.color li{
+	float: left;
+	margin: 0 5px;
+	width: 20px;
+	height: 20px;
+	background: #ccc;
+	box-shadow: 0 0 4px #FFF;
+	list-style: none;
+	cursor: pointer;
+}
+.color li:nth-child(1){
+	background: #002c4a;
+}
+.color li:nth-child(2){
+	background: #35ac03;
+}
+.color li:nth-child(3){
+	background: #ac0908;
+}
+.color li:nth-child(4){
+	background: #18bbff;
+}
