@@ -4,11 +4,10 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var session = require('express-session');
 
+var index = require('./routes/index');
+var users = require('./routes/users');
 
-var user = require('./routes/user');
-var content = require('./routes/content');
 var app = express();
 
 // view engine setup
@@ -21,15 +20,11 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session({
-	secret:'wangqiang',
-	resave:true,
-	saveUninitialized:true
-}));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/user', user);
-app.use('/content',content);
+app.use('/', index);
+app.use('/users', users);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
