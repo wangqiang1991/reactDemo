@@ -1,21 +1,22 @@
 
 import React from "react";
 import ReactDOM from "react-dom";
-import {Route,Router,IndexRoute,hashHistory} from "react-router";
-import {Provider} from "react-redux";
+// import {Route,Router,IndexRoute,hashHistory} from "react-router";
+// import {Provider} from "react-redux";
 //import store from "store";
 
-var Test = React.createClass({
-    render: function(){
-        return (
-            <div>
-           	<p>hello word</p>
-          </div>	
-        )
-    },
-});
+
+// class Test extends React.Component{
+//  		constructor(props){
+//     		super(props);
+//     	}
+//     	render(){
+//     		 return (<div> hello word </div>)
+//     	}	
+//   }
 
 
 ReactDOM.render(
-<Test />,
- document.getElementById("app"))
+     <h1> hello word! </h1>,
+     document.getElementById('app')
+);
