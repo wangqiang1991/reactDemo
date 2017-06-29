@@ -10,13 +10,16 @@ module.exports = {
   },
   module:{
 	  	loaders: [
-	    { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader', query: { presets: ['es2015','react'] } }
+	    { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader', query: { presets: ['es2015','react'],plugins: [["import", { libraryName: "antd"}]] } }
 	  ]
   },
   resolve:{
   	alias:{
-      "tools":"public/modules/common/tools",
-      "store":"public/modules/common/store"
+      "tools":path.join(__dirname,"public/modules/common/tools.js"),
+      "store":path.join(__dirname,"public/modules/common/store.js"),
+      "index":path.join(__dirname,"public/modules/common/index.js")
     }
   }
+  
+  
 };

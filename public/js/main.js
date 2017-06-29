@@ -1,22 +1,15 @@
-
 import React from "react";
 import ReactDOM from "react-dom";
-// import {Route,Router,IndexRoute,hashHistory} from "react-router";
-// import {Provider} from "react-redux";
-//import store from "store";
+import {Route,Router,IndexRoute,hashHistory} from "react-router";
+import {Provider} from "react-redux";
+import store from "store";
+import Index from 'index';
+import Login from '../modules/Login/Login.js'
 
 
-// class Test extends React.Component{
-//  		constructor(props){
-//     		super(props);
-//     	}
-//     	render(){
-//     		 return (<div> hello word </div>)
-//     	}	
-//   }
 
 
 ReactDOM.render(
-     <h1> hello word! </h1>,
+		<Login />,
      document.getElementById('app')
 );
