@@ -1,24 +1,40 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route } from 'react-router-dom'
+import {Route ,hashHistory, HashRouter, Link } from 'react-router-dom'
 //import {Route,Router,IndexRoute,hashHistory} from "react-router";
 import {Provider} from "react-redux";
 import store from "store";
-import Index from 'index';
-
+import url from 'url';
 
 import Login from '../modules/Login/Login.js'
+import MainManage from '../modules/Content/MainManage'
 
+
+class Main extends React.Component{
+  constructor(props){
+    super(props);
+  }
+  componentWillMount(){
+  	window.location.href=url+'/login';
+  }
+
+  render(){
+    return <div>
+   	  {this.props.children}
+    </div>
+  }
+};
 
 
 
 ReactDOM.render(
 		<Provider store={store}>
-	  		<BrowserRouter>
-	  			<Route path="/" component={Login}>
-	  				 <Route path="/login" component={Login}></Route>
-	  			</Route>
-	  		</BrowserRouter>
+			<HashRouter history={hashHistory}>
+				<Main>
+		  			<Route path="/login" component={Login}></Route>
+		  			<Route path="/MainManage" component={MainManage}></Route>
+		  		</Main>		
+		  	</HashRouter>	
   		</Provider>, 
      document.getElementById('app')
 );

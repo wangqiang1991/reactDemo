@@ -17,7 +17,7 @@ module.exports = {
   	alias:{
       "tools":path.join(__dirname,"public/modules/common/tools.js"),
       "store":path.join(__dirname,"public/modules/common/store.js"),
-      "index":path.join(__dirname,"public/modules/common/index.js")
+      "url":path.join(__dirname,"public/modules/common/url.js")
     }
   }
   
