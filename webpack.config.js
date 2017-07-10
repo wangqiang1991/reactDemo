@@ -1,27 +1,25 @@
 var path = require('path');
+
 module.exports = {
-  entry:[
-    path.join(__dirname,"public/js/main.js")
-  ],
+  entry:{
+    main:'./public/js/main.js'
+  },
   output:{
     path:path.join(__dirname,"public/dist"),
     filename:"main.bundle.js"
   },
   module:{
-    loaders:[
-      {test:/\.js$/,exclude:/node_modules/,loader:'babel',query:{presets:['es2015','react']}}
-    ]
+	  	loaders: [
+	    { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader', query: { presets: ['es2015','react'],plugins: [["import", { libraryName: "antd"}]] } }
+	  ]
   },
   resolve:{
-    root:path.join(__dirname,'public'),
-    extensions:['','.js'],
-    alias:{
-      "Index":"modules/index/Index",
-      "tools":"modules/commen/tools",
-      "store":"modules/commen/store",
-      "Child1":"modules/index/Child1",
-      "Child2":"modules/index/Child2",
-      'Login':'modules/login/Login'
+  	alias:{
+      "tools":path.join(__dirname,"public/modules/common/tools.js"),
+      "store":path.join(__dirname,"public/modules/common/store.js"),
+      "url":path.join(__dirname,"public/modules/common/url.js")
     }
   }
+  
+  
 };

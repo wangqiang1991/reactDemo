@@ -1,26 +1,40 @@
-/*jshint esversion:6*/
 import React from "react";
-import {Route,Router,IndexRoute,hashHistory} from "react-router";
 import ReactDOM from "react-dom";
-import Content from '../modules/commen/Content'
-import Index from "Index";
-import Login from 'Login';
-import store from "store";
-import User from '../modules/index/User'
+import {Route ,hashHistory, HashRouter, Link } from 'react-router-dom'
+//import {Route,Router,IndexRoute,hashHistory} from "react-router";
 import {Provider} from "react-redux";
+import store from "store";
+import url from 'url';
+
+import Login from '../modules/Login/Login.js'
+import MainManage from '../modules/Content/MainManage'
+
+
+class Main extends React.Component{
+  constructor(props){
+    super(props);
+  }
+  componentWillMount(){
+  	window.location.href=url+'/login';
+  }
+
+  render(){
+    return <div>
+   	  {this.props.children}
+    </div>
+  }
+};
+
 
 
 ReactDOM.render(
-  <Provider store={store}>
-  <Router history={hashHistory}>
-    <Route path="/login" component={Login}></Route>
-      <Route path="/" component={Content}>
-  	      <IndexRoute component={Login}></IndexRoute>
-    	    <Route path="/index" component={Index}>
-             <IndexRoute component={User}></IndexRoute>
-             <Route path="/index/user" component={User}></Route>
-          </Route>
-      </Route>
-  </Router>
-  </Provider>,
-  document.getElementById("content"));
+		<Provider store={store}>
+			<HashRouter history={hashHistory}>
+				<Main>
+		  			<Route path="/login" component={Login}></Route>
+		  			<Route path="/MainManage" component={MainManage}></Route>
+		  		</Main>		
+		  	</HashRouter>	
+  		</Provider>, 
+     document.getElementById('app')
+);
