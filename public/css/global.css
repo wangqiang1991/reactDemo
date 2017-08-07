@@ -1,0 +1,53 @@
+tbody td img{
+  width: 50px;
+  height: 50px;
+}
+.spanStyle{
+  margin-left:10px;
+  border-left: 4px solid #2ECC71;
+  height: 20px;
+  display: inline-block;
+  line-height: 20px;
+  padding-left: 5px;
+}
+.numCol .ant-col-6{
+  width: 50%;
+}
+.ant-upload-select-picture-card i {
+   margin-top: 10px;
+}
+body {
+	background: #000;
+	overflow: hidden;
+}
+canvas {
+	display: block;
+}
+#canvas{
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.ant-radio-button-wrapper{
+  padding:0 10px;
+}
+.rc-upload{
+  outline: none;
+}
+.shortP{
+  width: 115px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 16px;
+}
+.longP{
+  width: 200px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 16px;
+}
+.searchBtn{
+  line-height: 100%;
+}
