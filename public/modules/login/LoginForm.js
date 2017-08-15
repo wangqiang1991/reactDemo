@@ -1,4 +1,4 @@
-import React from "react";
+import React from "React";
 import {ajax} from "tools";
 import LoginKuang from "./LoginKuang";
 import { Radio,Checkbox } from 'antd';

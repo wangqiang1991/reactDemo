@@ -1,5 +1,5 @@
 /*jshint esversion:6*/
-import React from "react";
+import React from "React";
 import {Route,Router,IndexRoute,hashHistory} from "react-router";
 import ReactDOM from "react-dom";
 import Index from "Index";
@@ -20,18 +20,7 @@ ReactDOM.render(
   <Provider store={store}>
   <Router history={hashHistory}>
   <Route path="/login" component={LoginForm}></Route>
-    <Route path="/" component={Index}>
-        <IndexRoute component={LoginForm}></IndexRoute>
-          <Route path="/MainManage" component={MainManage}>
-          <IndexRoute component={UserInfo}></IndexRoute>
-          <Route path="/MainManage/UserInfo" component={UserInfo}></Route>
-          <Route path="/MainManage/OrderManage" component={OrderManage}></Route>
-          <Route path="/MainManage/HotManage" component={HotManage}></Route>
-          <Route path="/MainManage/Promotion" component={Promotion}></Route>
-          <Route path="/MainManage/GoodsManage" component={GoodsManage}></Route>
-          <Route path="/MainManage/ClassManage" component={ClassManage}></Route>
-        </Route>
-    </Route>
+    
   </Router>
   </Provider>,
   document.getElementById("content"));
