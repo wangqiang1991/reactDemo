@@ -1,26 +1,17 @@
-/*jshint esversion:6*/
-import React from "React";
+import React from "react";
 import {Route,Router,IndexRoute,hashHistory} from "react-router";
 import ReactDOM from "react-dom";
-import Index from "Index";
 import store from "store";
 import {Provider} from "react-redux";
-import MainManage from "MainManage";
-import ShowElement from "ShowElement";
-import UserInfo from "../modules/userManage/UserInfo";
-import HotManage from "../modules/hotManage/HotManage";
-import Promotion from "../modules/promotion/Promotion";
-import OrderManage from "OrderManage";
-import GoodsManage from "../modules/goodsManage/GoodsManage";
-import LoginForm from "../modules/login/LoginForm";
-import ClassManage from "../modules/classManage/ClassManage";
 
+import Module1 from '../modules/module1/module1';
+import Module2 from '../modules/module2/module2';
 
 ReactDOM.render(
   <Provider store={store}>
   <Router history={hashHistory}>
-  <Route path="/login" component={LoginForm}></Route>
-    
+  	<Route path="/index1" component={Module1}></Route>
+  	<Route path="/index2" component={Module2}></Route>
   </Router>
   </Provider>,
-  document.getElementById("content"));
+  document.getElementById("app"));

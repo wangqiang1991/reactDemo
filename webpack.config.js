@@ -1,28 +1,32 @@
 var path = require('path');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
-  entry:[
-    path.join(__dirname,"public/js/main.js")
-  ],
+  entry:{
+    main:'./public/js/main.js'
+  },
   output:{
     path:path.join(__dirname,"public/dist"),
     filename:"main.bundle.js"
   },
   module:{
-    loaders:[
-      {test:/\.css$/,loader:'style!css'},
-      {test:/\.js$/,exclude:/node_modules/,loader:'babel',query:{presets:['es2015','React']}}
+      loaders: [
+        { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader', 
+        query:{ presets: ['es2015','react'],plugins: [["import",{"libraryName":"antd"}]] } 
+      },
+      {
+        test:/\.css$/, 
+        loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader?modules' })
+      }
     ]
   },
+  plugins: [
+     new ExtractTextPlugin("main.bundle.css")
+ ],
   resolve:{
-    root:path.join(__dirname,'public'),
-    extensions:['','.js'],
     alias:{
-      "Index":"modules/index/Index",
-      "tools":"modules/commen/tools",
-      "store":"modules/commen/store",
-      "ShowElement":"modules/mainManage/ShowElement",
-      "MainManage":"modules/mainManage/MainManage",
-      "OrderManage":"modules/orderManage/OrderManage"
+      "tools":path.join(__dirname,"public/js/tools.js"),
+      "store":path.join(__dirname,"public/js/store.js"),
+      "url":path.join(__dirname,"public/js/url.js")
     }
   }
 };
