@@ -14,14 +14,18 @@ class Module2 extends React.Component{
     };
   }
   show(){
-    console.log(this.props.datasState);
+    console.log(this.props.datasState.Module1Data);
 
+  }
+  componentWillMount(){
+    console.log(this.props.datasState.Number);
   }
   render(){
   	return <div> 
          <Button  type="ghost" onClick={this.show.bind(this)}  >展示数据</Button>
          <h3 className={style.color}>通过store获取数据展示出来</h3>
          <a href="#index1">跳到模块1</a>
+         <h3>{this.props.datasState.Number}</h3>
   	</div>
   }
 }
