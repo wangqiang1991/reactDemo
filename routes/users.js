@@ -27,6 +27,22 @@ router.post('/login',function(req,res){
     });
 });
 
+//获取session
+router.get('/getSession',function(req,res){
+    var user = req.session.user;
+    if(user){
+        res.send(user);
+    }else{
+        res.send({});
+    }
+});
+//清空session
+router.get('/logout',function(req,res){
+    req.session.user = null;
+    res.send('注销！');
+});
+
+
 
 
 

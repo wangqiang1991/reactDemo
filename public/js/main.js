@@ -8,12 +8,21 @@ import {Provider} from "react-redux";
  //import Module2 from '../modules/module2/module2';
 import Login from '../modules/login/login';
 import Index from '../modules/index/index';
+import Home from '../modules/home/home';
+import User from '../modules/user/user';
+import Flower from '../modules/flower/flower';
 
 ReactDOM.render(
   <Provider store={store}>
   <Router history={hashHistory}>
   	<Route path="/" component={Login}></Route>
-  	<Route path="/index" component={Index}></Route>
+  	<Route path="/login" component={Login}></Route>
+  	<Route path="/index" component={Index}>
+  		<IndexRoute component={Home}></IndexRoute>
+  		<Route path="/index/home" component={Home}></Route>
+		<Route path="/user/userlist" component={User}></Route>
+  		<Route path="/flower/flowerlist" component={Flower}></Route>
+  	</Route>
   </Router>
   </Provider>,
   document.getElementById("app"));
