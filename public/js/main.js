@@ -20,7 +20,7 @@ ReactDOM.render(
   	<Route path="/index" component={Index}>
   		<IndexRoute component={Home}></IndexRoute>
   		<Route path="/index/home" component={Home}></Route>
-		<Route path="/user/userlist" component={User}></Route>
+		  <Route path="/user/userlist" component={User}></Route>
   		<Route path="/flower/flowerlist" component={Flower}></Route>
   	</Route>
   </Router>

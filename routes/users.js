@@ -7,6 +7,8 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
+
+//获取所有用户
 router.get("/showall",function(req,res){
     DataDAO.findAll(function(data){
       res.send(data);
@@ -25,6 +27,20 @@ router.post('/login',function(req,res){
             res.send({status:0});
         }
     });
+});
+//增加用户
+router.get('/useradd',function(req,res){
+       var username = req.query.username;
+       var pwd = req.query.pwd;
+       DataDAO.useradd(username,pwd,function(){
+            res.send('success')
+       })
+});
+router.get('/deluser',function(req,res){
+       var id = req.query.id;
+       DataDAO.deluser(id,function(){
+            res.send('success')
+       })
 });
 
 //获取session
