@@ -11,7 +11,7 @@ import Index from '../modules/index/index';
 import Home from '../modules/home/home';
 import User from '../modules/user/user';
 import Flower from '../modules/flower/flower';
-
+import FlowerList from '../modules/flower/showflower';
 ReactDOM.render(
   <Provider store={store}>
   <Router history={hashHistory}>
@@ -21,7 +21,8 @@ ReactDOM.render(
   		<IndexRoute component={Home}></IndexRoute>
   		<Route path="/index/home" component={Home}></Route>
 		  <Route path="/user/userlist" component={User}></Route>
-  		<Route path="/flower/flowerlist" component={Flower}></Route>
+  		<Route path="/flower/addflower" component={Flower}></Route>
+      <Route path="/flower/showflower" component={FlowerList}></Route>
   	</Route>
   </Router>
   </Provider>,

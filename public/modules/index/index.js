@@ -70,7 +70,8 @@ export default class Index extends React.Component{
                   <Menu.Item key="2"><a href="#user/userlist">管理员</a></Menu.Item>
                 </SubMenu>
                 <SubMenu key="sub2" title={<span><Icon type="api" /><span>花汇管理</span></span>}>
-                  <Menu.Item key="3"><a href="#flower/flowerlist">鲜花列表</a></Menu.Item>
+                  <Menu.Item key="3"><a href="#flower/addflower">增加花汇</a></Menu.Item>
+                  <Menu.Item key="4"><a href="#flower/showflower">花汇列表</a></Menu.Item>
                 </SubMenu>
 
               </Menu>

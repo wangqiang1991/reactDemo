@@ -1,0 +1,19 @@
+.div1{
+	text-align: right;
+}
+.div2{
+  height: auto;
+  overflow: hidden;
+  padding-bottom: 50px;
+}
+.div2 ul li{
+	background-color:red;
+}
+.div2 h3 img{
+	margin: auto;
+}
+.div2 h3 p{
+	text-align: center;
+	font-size: 25px;
+	color: green;
+}

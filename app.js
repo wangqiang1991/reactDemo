@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-
+var flower = require('./routes/flower');
 var app = express();
 
 // view engine setup
@@ -37,7 +37,7 @@ app.use('/*', function(req,res,next){
 
 app.use('/', index);
 app.use('/users', users);
-
+app.use('/flower', flower);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

@@ -9,7 +9,8 @@ class User extends React.Component {
     this.state={
     	visible: false,
     	data:[],
-    	visible1:false
+    	visible1:false,
+    	upuser:{}
     };
   }
   showModal  ()  {
@@ -67,6 +68,33 @@ class User extends React.Component {
   }
  
   handleOk1 (e) {
+  	var users =  this.props.form.getFieldsValue(['upuser','uppassword']);
+    var username = users.upuser;
+    var pwd = users.uppassword;
+    if(username == undefined || pwd == undefined ||username == '' || pwd == ''){
+      	message.error('用户名或密码不能为空');
+      	return false;
+      }
+    if(username == this.state.upuser.username && pwd == this.state.upuser.pwd){
+    	message.error('用户名和密码不能和以前一样');
+    	return false;
+    } 
+    if(!/^[a-zA-Z0-9]{6,10}$/.test(pwd)){
+	                message.error('密码格式不正确');
+	               return false;
+	}
+	ajax({
+		type:'post',
+		url:'users/upuser',
+		data:{
+			id:this.state.upuser._id,
+			username:username,
+			pwd:pwd
+		},
+		success:function(){
+			console.log('修改成功')
+		}
+	})
     this.setState({
       visible1: false,
     });
@@ -80,6 +108,7 @@ class User extends React.Component {
 	this.props.form.setFieldsValue({upuser:record.username,uppassword:record.pwd});
     this.setState({
       visible1: true,
+      upuser:record
     });
   }
 

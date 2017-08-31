@@ -1,0 +1,29 @@
+.div1{
+	margin-left: 20px;
+	margin-bottom: 24px;
+}
+.div2{
+	width: 400px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.div3{
+	width: 200px;
+	height: auto;
+}
+.div4{
+	width: 100px;
+	height: auto;
+}
+.div5{
+	font-size: 30px;
+	color: red;
+}
+.div6{
+	font-size: 16px;
+	color: green;
+}
+.div7{
+	font-size: 12px;
+	color: blue;
+}

@@ -36,6 +36,8 @@ router.get('/useradd',function(req,res){
             res.send('success')
        })
 });
+
+//删除用户
 router.get('/deluser',function(req,res){
        var id = req.query.id;
        DataDAO.deluser(id,function(){
@@ -43,6 +45,16 @@ router.get('/deluser',function(req,res){
        })
 });
 
+//修改用户
+router.post("/upuser",function (req,res) {
+  var id = req.body.id;
+  var username = req.body.username;
+  var pwd = req.body.pwd;
+  
+  DataDAO.update(id,username,pwd,function () {
+    res.send("修改成功");
+  });
+});
 //获取session
 router.get('/getSession',function(req,res){
     var user = req.session.user;
