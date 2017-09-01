@@ -37,11 +37,20 @@ export default class Index extends React.Component{
       }
     });
   }
+  setCookie(c_name,value,expiredays)
+    {
+    var exdate=new Date()
+    exdate.setDate(exdate.getDate()+expiredays)
+    document.cookie=c_name+ "=" +escape(value)+
+    ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
+    }
   logout(){
     ajax({
       type:"get",
       url:"/users/logout",
       success:function(){
+        this.setCookie('user','');
+        this.setCookie('password','');
         hashHistory.push("/login");
       }.bind(this)
     });
