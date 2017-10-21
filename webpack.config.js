@@ -19,6 +19,17 @@ module.exports = {
       }
     ]
   },
+  devServer: {
+          historyApiFallback: true,
+          hot: true,
+          inline: true,
+          proxy: {
+            '/api/*': {
+              target: 'http://127.0.0.1:3000',
+              changeOrigin: true
+            }
+         }
+  },
   plugins: [
      new ExtractTextPlugin("main.bundle.css")
  ],

@@ -51,6 +51,16 @@ class Login extends React.Component {
 	               message.error('密码格式不正确');
 	               return false;
 	        }
+          ajax({
+            type:'get',
+            url:'/api/users/logout',
+            success:(data)=>{
+              console.log(data);
+            }
+
+
+
+          })
             ajax({
               type:'post',
               url:'/users/login',
@@ -59,6 +69,7 @@ class Login extends React.Component {
                 pwd:pwd
               },
               success:(data)=>{
+                console.log(data)
                 if(data.status == 1){
                     if(rem == true){
                       this.setCookie('user',user,7);

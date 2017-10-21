@@ -34,6 +34,13 @@ class Home extends React.Component {
 			    }
 			}
 		})
+		ajax({
+			type:'get',
+			url:'/api/users/showall',
+			success:(data) => {
+				console.log(data);
+			}
+		})
 	}
 render(){
 	var module;
